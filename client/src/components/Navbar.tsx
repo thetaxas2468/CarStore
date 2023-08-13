@@ -15,6 +15,9 @@ const Navbar = () => {
         axios.get(LOGOUT_URL!, { withCredentials: true }).then(res => {
             // do something
             dispatch(changeUserAsLogOut());
+            localStorage.removeItem("jwt");
+            localStorage.removeItem("email");
+            window.location.reload();
 
         }).catch(err => {
             console.log(err);

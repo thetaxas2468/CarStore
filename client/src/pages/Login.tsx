@@ -31,6 +31,7 @@ const Login = () => {
             localStorage.setItem("email", emailName);
             dispatch(changeUserAsLogIn(emailName.split("@")[0]));
             dispatch(reset());
+            window.location.reload();
             navigate("/");
 
         }).catch(err => {
