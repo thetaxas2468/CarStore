@@ -1,17 +1,16 @@
-import React, {  FormEvent, useEffect, useState } from 'react';
+import {  FormEvent, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { changeEmail, changePassword, reset } from '../store';
 import "./static/Login.css";
-import { SIGN_UP_URL } from '../utils';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { sign_up_function } from '../utils/functions';
 
 
 const Signup = () => {
     const {email,password} = useAppSelector(state=>state.userForm);
     const dispatch=useAppDispatch();
     const navigate = useNavigate();
-    const [error,setError] = useState<String>("");
+    const [error,setError] = useState<string>("");
 
     useEffect(()=>{
         dispatch(reset());
@@ -19,19 +18,15 @@ const Signup = () => {
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     //utils
-    try{
-      const result: any = await axios.post(SIGN_UP_URL!,{email,password},{withCredentials:true});
-      if(result.status === 200){
+    sign_up_function(email,password).then(result=>{
+      if (result === "done"){
         dispatch(reset());
         navigate("/login");
       }
       else{
-        setError("Please try again");
+        setError(result);
       }
-    }
-    catch(e : any){
-      setError(e.response.data.error);
-    }
+    })
   };
 
   return (

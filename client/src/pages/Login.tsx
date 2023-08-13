@@ -1,12 +1,11 @@
-import React, { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { changeEmail, changePassword, changeUserAsLogIn, reset } from '../store';
 import "./static/Login.css"
-import axios from 'axios';
-import { SIGN_IN_URL } from "../utils";
 // import Cookies from "js-cookie";
 import Cookies from 'js-cookie';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { sign_in_function } from '../utils/functions';
 
 
 const Login = () => {
@@ -16,27 +15,28 @@ const Login = () => {
     const navigate = useNavigate();
     const user = Cookies.get("email")?.split("@")[0] || null;
 
-    useEffect(()=>{
-        if( user !== null && user !== undefined){
+    useEffect(() => {
+        if (user !== null && user !== undefined) {
             navigate("/");
         }
     })
 
-    const handleSubmit = (event: FormEvent) => {
+    const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
         //Utils
-        axios.post(SIGN_IN_URL!, { email, password }, { withCredentials: true }).then(result => {
-            const { jwt, email: emailName } = Cookies.get();
-            localStorage.setItem("jwt", jwt);
-            localStorage.setItem("email", emailName);
-            dispatch(changeUserAsLogIn(emailName.split("@")[0]));
-            dispatch(reset());
-            window.location.reload();
-            navigate("/");
-
-        }).catch(err => {
-            setError(err.response.data.error);
+        sign_in_function(email, password).then(result => {
+            if(result === "done"){
+                dispatch(changeUserAsLogIn(localStorage.getItem("email")?.split("@")[0]));
+                dispatch(reset());
+                window.location.reload();
+                navigate("/");
+            }
+            else{
+                setError(result);
+            }
         })
+
+
 
     };
 

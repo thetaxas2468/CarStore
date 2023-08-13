@@ -21,3 +21,4 @@ export const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 export const SIGN_IN_URL = process.env.REACT_APP_SIGN_IN;
 export const SIGN_UP_URL = process.env.REACT_APP_SIGN_UP;
 export const LOGOUT_URL = process.env.REACT_APP_LOGOUT;
+
