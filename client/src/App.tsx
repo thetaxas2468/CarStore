@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Cars from './pages/Cars';
 import Navbar from './components/Navbar';
+import { Footer } from './components/Footer';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path='/cars' element={<Cars></Cars>}></Route>
           {/* <Route path='/car:id' element={<Home></Home>}></Route> */}
         </Routes>
+        <Footer></Footer>
       </Router>
     </div>
   );

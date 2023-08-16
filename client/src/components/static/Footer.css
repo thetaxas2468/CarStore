@@ -1,0 +1,25 @@
+.footer{
+    padding-top: 60px;
+}
+.footer ul{
+    font-size: 11px;
+    line-height: 16px;
+    margin: 3px 0;
+}
+.footer ul li{
+    padding: 0 24px 4px 0;
+    display: inline-block;
+}
+.footer ul li a{
+    color: gray;
+}
+.footer ul li a:hover{
+    color: blue;
+    text-decoration: underline;
+}
+footer{
+    position:fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+}
