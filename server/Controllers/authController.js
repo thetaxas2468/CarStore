@@ -58,9 +58,9 @@ const signin = async (req, res) => {
 
 };
 
-const logout = (req,res)=>{
-    res.cookie("jwt","",{maxAge:1})
-    res.cookie("email","",{maxAge:1})
+const logout = (req, res) => {
+    res.cookie("jwt", "", { maxAge: 1 })
+    res.cookie("email", "", { maxAge: 1 })
     return res.send();
 }
 

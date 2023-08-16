@@ -25,13 +25,17 @@ const CarSchema = new Schema({
     color: {
         type: String,
         required: true,
+    },
+    owner: {
+        type: Schema.Type.ObjectId,
+        ref: "User"
     }
 });
 
 Car.pre("save", async (next) => {
     const car = this;
     try {
-        const existingCar = await User.findOne({ name: car.name,price:car.price,model:car.model,color:car.color,contactNumber:car.contactNumber});
+        const existingCar = await User.findOne({ name: car.name, price: car.price, model: car.model, color: car.color, contactNumber: car.contactNumber });
         if (existingCar) {
             const error = new Error('Car like this already exists.');
             return next(error);
