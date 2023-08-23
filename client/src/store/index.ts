@@ -3,7 +3,8 @@ import { changeEmail,changePassword,userFormReducer } from "./slices/userFormSli
 import { reset } from "./actions";
 import { userReducer,changeUserAsLogIn,changeUserAsLogOut } from "./slices/userSlice";
 import {carFormReducer, changeCarColorForm,changeCarContactNumberForm,changeCarImageForm,changeCarModelForm,changeCarNameForm,changeCarPriceForm} from "./slices/carFormSlice";
-import { addCar,removeCar,carsReducer } from "./slices/carsSlice";
+import { addCar,removeCar,carsReducer, setCars } from "./slices/carsSlice";
+
 
 const store= configureStore({
     reducer:{
@@ -18,5 +19,5 @@ export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
 
 export {store}
-export {changeEmail,changePassword,changeUserAsLogIn,changeUserAsLogOut,
+export {changeEmail,changePassword,changeUserAsLogIn,changeUserAsLogOut,setCars,
     changeCarColorForm,changeCarContactNumberForm,changeCarImageForm,changeCarModelForm,changeCarNameForm,changeCarPriceForm,addCar,removeCar,reset}

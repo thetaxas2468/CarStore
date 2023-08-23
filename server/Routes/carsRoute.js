@@ -3,9 +3,9 @@ const { createCar, findCar, removeCar, getAllCars } = require("../Controllers/ca
 const { checkDuplicateCar, verifyToken } = require("../Middlewares/index");
 
 router.post("/createcar", [verifyToken, checkDuplicateCar], createCar);
-router.get("/findcar", findCar);
-router.get("/removecar", removeCar);
-router.get("/getcars", getAllCars);
+router.get("/findcar",[verifyToken], findCar);
+router.get("/removecar",[verifyToken], removeCar);
+router.get("/getcars",[verifyToken], getAllCars);
 
 
 module.exports = router;

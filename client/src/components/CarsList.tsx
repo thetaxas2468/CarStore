@@ -1,8 +1,18 @@
 import React from 'react'
+import CarCard from './CarCard'
+import { Car } from '../utils'
 
-const CarsList = () => {
+interface CarListProps {
+  cars: Car[];
+}
+
+const CarsList = ({cars}:CarListProps) => {
   return (
-    <div>CarsList</div>
+    <div>{
+      cars.map((car,key)=>{
+          return <CarCard car={car} key={key}/>
+      })
+      }</div>
   )
 }
 

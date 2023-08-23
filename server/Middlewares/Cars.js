@@ -15,6 +15,10 @@ checkDuplicateCar = async (req, res, next) => {
 };
 // create,find ... all need middlewares to check the cars
 
+createCar = async (req, res, next) => {
+    
+}
+
 
 
 module.exports = {

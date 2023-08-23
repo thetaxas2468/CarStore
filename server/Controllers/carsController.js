@@ -5,6 +5,9 @@ const Cars = require("../Models/Car");
 const findCar = async (req, res) => {
     // need to validate car details
     const { name, price, contactNumber, color, model } = req.body;
+    if(!(name && price && contactNumber && color &&model)){
+        return res.status(400).json({error:"Missing details!"})
+    }
     const result = await Cars.find({
         name, price, contactNumber, color, model
     })
@@ -15,6 +18,7 @@ const findCar = async (req, res) => {
 }
 
 const getAllCars = async (req, res) => {
+    console.log(req.user)
     const cars = await Cars.find();
     return res.json({ result: cars });
 }
@@ -23,6 +27,7 @@ const createCar = async (req, res) => {
     // need to validate token and validate car details
     const { name, price, contactNumber, color, model, image } = req.body;
     const userId = req.userId;
+    const user= req.user;
     const UserToAddCar = await User.findOne({ _id: userId })
     if (UserToAddCar) {
         const Car = await Cars.insertOne({ name, price, contactNumber, color, model, image, owner: UserToAddCar });

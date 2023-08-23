@@ -27,12 +27,12 @@ const CarSchema = new Schema({
         required: true,
     },
     owner: {
-        type: Schema.Type.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "User"
     }
 });
 
-Car.pre("save", async (next) => {
+CarSchema.pre("save", async (next) => {
     const car = this;
     try {
         const existingCar = await User.findOne({ name: car.name, price: car.price, model: car.model, color: car.color, contactNumber: car.contactNumber });

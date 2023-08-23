@@ -28,8 +28,8 @@ const Login = () => {
             if(result === "done"){
                 dispatch(changeUserAsLogIn(localStorage.getItem("email")?.split("@")[0]));
                 dispatch(reset());
-                window.location.reload();
                 navigate("/");
+                window.location.reload();
             }
             else{
                 setError(result);

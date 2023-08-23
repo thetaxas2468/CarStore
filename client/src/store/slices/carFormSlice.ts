@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { reset } from "../actions";
-import {  carFormInitalStateType } from "../../utils";
+import {  Car } from "../../utils";
 
 
-const initialState:carFormInitalStateType = {
+const initialState:Car = {
+    _id:"",
     name:"",
     image:"",
     price:0,

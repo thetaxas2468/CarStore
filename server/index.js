@@ -5,6 +5,7 @@ const mongoose = require("mongoose")
 const app = express();
 const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/authRoute");
+const carsRoute = require("./Routes/carsRoute");
 const { MONGO_URL, SERVER_PORT, DB_NAME } = require("./constants");
 
 
@@ -19,6 +20,7 @@ app.use(cookieParser());
 
 
 app.use("/api/auth", authRoute);
+app.use("/api/cars", carsRoute);
 
 
 app.use((req, res) => {

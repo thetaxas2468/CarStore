@@ -1,15 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {  carFormInitalStateType } from "../../utils";
+import {  Car } from "../../utils";
 
 
 
 
-const initialState: {cars:carFormInitalStateType[]} = {
+const initialState: {cars:Car[]} = {
     cars:[]
 }
 
 const cars = createSlice({
-    name: "user",
+    name: "cars",
     initialState,
     reducers: {
         addCar(state, action) {
@@ -22,9 +22,14 @@ const cars = createSlice({
             })
             state.cars = notFilteredCars;
         },
+        setCars(state, action) {
+            const cars = action.payload;
+            state.cars = cars;
+        },
+
     }
 })
 
 
-export const { addCar, removeCar } = cars.actions;
+export const { addCar, removeCar, setCars } = cars.actions;
 export const carsReducer = cars.reducer;
